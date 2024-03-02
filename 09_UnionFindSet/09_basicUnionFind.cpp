@@ -30,6 +30,13 @@ void build() {
 }
 
 // 第index结点往上找，找到代表结点则返回
+int find1(int index) {
+    if (index != father[index]) {
+        father[index] = find1(father[index]);
+    }
+    return father[index];
+}
+
 int find(int index) {
     int size = 0;
     while (index != father[index]) {
