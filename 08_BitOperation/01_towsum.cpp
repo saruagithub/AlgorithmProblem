@@ -24,3 +24,8 @@ int add(int a, int b){
     }
     return a;
 }
+
+int main() {
+    cout << add(5,6) << endl;
+    return 0;
+}
