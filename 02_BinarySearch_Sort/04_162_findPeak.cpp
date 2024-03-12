@@ -8,8 +8,7 @@
 
 // eg nums = [1,2,3,1] output = 2, 因为3是峰值，返回索引2
 // eg nums = [1,2,1,3,5,6,4]  output = 1 or 5, 峰值可以是2也可以是6
-#include <iostream>
-#include <vector>
+#include "02_header.h"
 using namespace std;
 
 int findPeakElement(vector<int>& nums) {

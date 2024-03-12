@@ -21,19 +21,22 @@ int findMin(vector<int>& nums) {
 
 // leecode 33 搜索旋转排序数字里的target的index
 // eg, {4,5,6,7,0,1,2} target = 0; res = 4
-int search(vector<int>& nums, int target) {
+int searchRotate(vector<int>& nums, int target) {
     int l = 0, r = nums.size() -1, mid = 0;
     while (l <= r) {
         mid = l + (r - l) / 2;
         if (target == nums[mid]) return mid;
-        else if (nums[mid] >= nums[0]) {
-            if (target >= nums[0] && nums[mid] > target) {
+        else if (nums[mid] == nums[r]) {
+            r = r - 1;
+        }
+        else if (nums[mid] > nums[r]) {
+            if (target >= nums[l] && nums[mid] > target) {
                 r = mid - 1;
             } else {
                 l = mid + 1;
             }
         } else {
-            if (target <= nums.back() && target > nums[mid]) {
+            if (target <= nums[r] && target > nums[mid]) {
                 l = mid + 1;
             } else {
                 r = mid - 1;
@@ -45,6 +48,8 @@ int search(vector<int>& nums, int target) {
 
 
 int main() {
-    vector<int> nums = {2,2,4,5,1,2,2,2}; // res = 1
+    vector<int> nums = {2,2,4,5,1,2,2,2}; // res = 1 (min value)
     cout << findMin(nums) << endl;
+    vector<int> nums1 = {4,5,6,7,0,1,2}; // res = 6 (index)
+    cout << searchRotate(nums1, 2) << endl;
 }
