@@ -22,15 +22,18 @@ void test() {
     cout << maxval(nums);
 }
 
-// ---------------------------------------
+// ---------------------------------------------------------
+// ---------------------------------------------------------
+
 int numbers[50];
 int help[50] = {0};
 
-// a-> 2 3 3 , b-> 4 6 6 ,  按顺序存入 help[i]
+// p1-> 2 1 , p2-> 4 3 ,  按顺序存入 help[i]
+// l, m, r is index of numbers
 void merge(int l, int m, int r) {
     int i = l;
     int p1 = l;
-    int p2 = m;
+    int p2 = m + 1;
     while (p1 <= m && p2 <= r) {
         help[i++] = numbers[p1] <= numbers[p2]? numbers[p1++] : numbers[p2++];
     }
@@ -44,16 +47,34 @@ void merge(int l, int m, int r) {
 }
 
 // 时间复杂度 O(n logn)  ,space O(n)
+// T(n) = 2 * T(n/2) + O(n)
 void mergeSort(int l, int r) {
     if (l == r) return;
     int m = (l + r) / 2;
     mergeSort(l, m);
     mergeSort(m+1, r);
-    merge(l, m+1, r);
+    merge(l, m, r);
+}
+
+// 非递归版本的归并排序，步长step 1， 2， 4, 8 。。。 直到＞ numbers.size()
+void mergeSort1(int len) {
+    int step = 1;
+    for (; step < len; step <<= 1) {
+        int l = 0, m , r;
+        while (l < len) {
+            m = l + step - 1;
+            if (m + 1 >= len) break; // 右侧开头都为0了，不需要merge
+            r = min(l + 2 * step - 1, len - 1);
+            //cout << "r = " << r << " ";
+            merge(l, m, r);
+            l = r + 1;
+        }
+    }
 }
 
 int main() {
     int n, i = 0, temp = 0;
+    // 自己输入数据大小n个，输入numbers数组
     cin >> n;
     while (i < n) {
         cin >> temp;
@@ -61,6 +82,7 @@ int main() {
         i++;
     }
     mergeSort(0, n-1);
+    //mergeSort1(n);
     for (int i = 0; i < n; i++) {
         cout << numbers[i] << ",";
     }
