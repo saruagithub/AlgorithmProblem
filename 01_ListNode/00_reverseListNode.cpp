@@ -12,6 +12,23 @@ ListNode* reverseListNode(ListNode* head) {
     return prev;
 }
 
+void reverseListNode1(ListNode** l) {
+    ListNode *head = *l;
+    ListNode *prev = nullptr;
+    ListNode *next = nullptr;
+    while (head) {
+        next = head->next;
+        head->next = prev;
+        prev = head;
+        head = next;
+    }
+    l = &prev;
+    while (*l) {
+        cout << (*l)->val << " ";
+        *l = (*l)->next;
+    }
+}
+
 // leecode 92
 ListNode* reverseBetween(ListNode* head, int left, int right) {
     if (left == right) return head;
@@ -42,8 +59,11 @@ ListNode* reverseBetween(ListNode* head, int left, int right) {
 int main() {
     // orig
     ListNode* myListNode = generateListNode(5);
+    ListNode** ll = &myListNode;
     printListNode(myListNode);
     // new reversed
-    ListNode* reverse = reverseListNode(myListNode);
-    printListNode(reverse);
+    // ListNode* reverse = reverseListNode(myListNode);
+    // printListNode(reverse);
+    reverseListNode1(&myListNode);
+    // printListNode(myListNode);
 }
