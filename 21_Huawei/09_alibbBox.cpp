@@ -1,22 +1,4 @@
-#include <vector>
-#include <sstream>
-#include <string>
-#include <iostream>
-using namespace std;
-
-vector<int> splitstr(string s, char deli) {
-    //vector<string> tokens;
-    vector<int> tokens;
-    std::stringstream tokenStream(s);
-    //std::istringstream tokenStream(s);
-    string token;
-
-    while (std::getline(tokenStream, token, deli)) {
-        tokens.push_back(stoi(token));
-    }
-    //for (auto ele: tokens) cout << ele << " ";
-    return tokens;
-}
+#include "21_header.h"
 
 int alibbBox(vector<int>& numbers) {
     int sum = 0;
