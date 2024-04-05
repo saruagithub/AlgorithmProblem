@@ -6,7 +6,7 @@ class MinStack {
 public:
 
     stack<int> valstk;
-    stack<int> minstk;
+    stack<int> minstk; // 每次都存最小的值
     MinStack() {
     }
     
