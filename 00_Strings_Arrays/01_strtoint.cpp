@@ -10,9 +10,9 @@
 using namespace std;
 
 int strToInt(string str){
-    int i=0, flag=1;
+    int i = 0, flag = 1;
     long int res = 0;
-    while(str[i]==' ') i++;
+    while(str[i] == ' ') i++;
     if (str[i] == '-') flag = -1;
     if (str[i] == '-' || str[i]== '+') i++;
     for(; i<str.size() && isdigit(str[i]); i++){
