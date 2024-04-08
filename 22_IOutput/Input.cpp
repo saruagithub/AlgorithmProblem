@@ -1,6 +1,21 @@
 #include <iostream>
 #include <cctype>
+#include <string>
+#include <vector>
+#include <sstream>
 using namespace std;
+
+void splitstr(string s, char deli) {
+    vector<string> tokens;
+    std::stringstream tokenStream(s);
+    //std::istringstream tokenStream(s);
+    string token;
+
+    while (std::getline(tokenStream, token, deli)) {
+        tokens.push_back(token);
+    }
+    for (auto ele: tokens) cout << ele << "," << endl;
+}
 
 int main() {
     string s1;
