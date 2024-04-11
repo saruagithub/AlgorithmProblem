@@ -6,12 +6,12 @@ class A {
     int a;
 };
 
-class B : public A {
+class B : virtual public A {
     public: 
     int b;
 };
 
-class C : public A {
+class C : virtual public A {
     public: 
     int c;
 };
@@ -32,11 +32,10 @@ int main() {
     d.B::a = 5;
 	cout << d.B::a << endl;
 
-    // self
-    // cout << "d.b = " << d.b  << "d.c = " << d.c << endl;
-
     // 经过B访问的a和经过C访问的a，它们，是一个a吗？ no addr is different
     // 这个菱形继承，D中将会有两份A的副本
+
+    // 改成虚继承之后就可以了，a只有一份数据
     cout << &d.B::a << endl;
 	cout << &d.C::a << endl;
     return 0;

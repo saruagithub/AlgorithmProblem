@@ -1,0 +1,1 @@
+	Base *b1 = new Base();
