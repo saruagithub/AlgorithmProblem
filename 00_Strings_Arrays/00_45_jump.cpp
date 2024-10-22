@@ -24,3 +24,20 @@ int jump(vector<int>& nums) {
     
     return res;
 }
+
+int jump1(vector<int>& nums) {
+    // 思想就一句话：每次在上次能跳到的范围（end）内
+    // 选择一个能跳的最远的位置（也就是能跳到max_far位置的点）作为下次的起跳点 ！
+    // the maxfar always exists
+    int max_far = 0; // 目前能跳到的最远位置
+    int res_step = 0;
+    int end = 0;  // 上次跳跃可达范围右边界（下次的起跳点）
+    for (int i = 0; i < nums.size() - 1; i++) {
+        max_far = max(max_far, i + nums[i]);
+        if (i == end) {
+            end = max_far;
+            res_step++;
+        }
+    }
+    return res_step;
+}

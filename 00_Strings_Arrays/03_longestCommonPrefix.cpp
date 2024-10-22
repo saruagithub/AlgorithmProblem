@@ -14,7 +14,7 @@ string longestCommonPrefix(vector<string>& strs){
         return "";
     }
     string prefix = strs[0];
-    for(int i=1;i<strs.size();i++){
+    for(int i=1; i<strs.size(); i++){
         //如果不含有prefix，则将prefix长度减1
         while (strs[i].find(prefix) != 0) {
             if (prefix == "") {

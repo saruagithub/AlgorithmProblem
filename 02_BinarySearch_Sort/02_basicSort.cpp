@@ -9,6 +9,7 @@
 #include <string.h>
 #include <iostream>
 #include <vector>
+#include <algorithm>
 using namespace std;
 
 static void swap(vector<int>& nums, int i, int j) {
@@ -18,23 +19,33 @@ static void swap(vector<int>& nums, int i, int j) {
 }
 
 void selectSort(vector<int>& nums) {
+    if (nums.size() < 2) return;
     for (int i = 0, minIndex; i < nums.size() - 1; i++) {
         minIndex = i;
-        // selec the min, put into the start
+        // selec the min, put into the start pos
         for (int j = i + 1; j < nums.size(); j++) {
             if (nums[j] < nums[minIndex]) minIndex = j;
         }
-        swap(nums, i, minIndex);
+        //swap(nums, i, minIndex);
+        std::swap(nums[i], nums[minIndex]);
     }
 }
 
+// always swap the bigger num with it's adjacent one until reaching to the end
 void bubbleSort(vector<int>& nums) {
-    // exchange bigger elem to the tail
     for (int end = nums.size() - 1; end > 0; end--) {
         for (int i = 0; i < end; i++) {
-            if (nums[i] > nums[i+1]) swap(nums, i, i+1);
+            if (nums[i] > nums[i + 1]) {
+                //swap(nums, i , i + 1);
+                std::swap(nums[i], nums[i+1]);
+            }
         }
     }
+    // for (int end = nums.size() - 1; end > 0; end--) {
+    //     for (int i = 0; i < end; i++) {
+    //         if (nums[i] > nums[i+1]) std::swap(nums[i], nums[i+1]);
+    //     }
+    // }
 }
 
 void insertSort(vector<int>& nums) {
@@ -48,8 +59,8 @@ void insertSort(vector<int>& nums) {
 }
 
 int main() {
-    vector<int> nums = {2,3,1,4,5};
-    // selectSort(nums);
+    vector<int> nums = {2,3,1,4,5,7,1};
+    //selectSort(nums);
     bubbleSort(nums);
     for(auto ele: nums) cout << ele << " ";
     return 0;
